@@ -1,0 +1,37 @@
+body{
+    background-image: url("../img/Login.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.contact{
+color: white !important;
+}
+.contact:hover{
+    background-color: #92B4EC !important;
+    color:#092940 !important;
+}
+.btn-login{
+    background-color: #92B4EC !important;
+    color:#092940 !important;
+}
+.btn-outline-eye{
+    border: 1px solid lightgray !important;
+    border-left: none !important;
+    background-color: white;
+}
+.btn-outline-eye:hover,.btn-outline-eye:active{
+    border: 1px solid lightgray !important;
+    border-left: none !important;
+    background-color: white !important;
+    color: #092940 !important;
+}
+.login-card{
+    min-height: auto !important;
+    width: 55vw !important;
+}
+@media (max-width: 767px) {
+    .login-card{
+        min-height: auto !important;
+        width: 90vw !important;
+    }
+}

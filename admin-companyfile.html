@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+    <!-- navbar -->
+    <section class="navbar_custom">
+        <nav class="navbar navbar-expand-lg nav-cus navbar-light " data-bs-theme="light">
+            <div class="container-fluid justify-content-start">
+                <a class="navbar-brand" href="./admindashbord.html">
+                    <img src="./img/Logo.png" alt="" srcset="" height="65px">
+                </a>
+                <div class="text-white navbar-brand ms-3 fs-6 ">
+
+                    Admin Dashboard > FME Organizations Ltd
+                </div>
+
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="./img/user.png" alt="" height="50px">
+                        </a>
+                        <ul class="dropdown-menu ">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"> </i> Logout</a></li>
+
+                        </ul>
+                    </li>
+            </div>
+
+            </ul>
+
+
+
+        </nav>
+    </section>
+
+
+    <!-- sidebar -->
+    <div id="wrapper">
+
+        <aside id="sidebar-wrapper" class="shadow-lg">
+            <!-- <div class="sidebar-brand">
+        <h2>Logo</h2>
+      </div> -->
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="./admindashbord.html" style="color: #24455F !important;"> <i
+                            class="bi bi-arrow-left ms-2 me-3"></i> Back</a>
+                </li>
+                <li class="active py-1">
+                    <a href="#"><i class="bi bi-files ms-1 me-3"></i>Documents</a>
+                </li>
+                <li class="py-1">
+                    <a href="#"><i class="bi bi-gear ms-2 me-3"></i>Settings</a>
+                </li>
+                <hr>
+                <li class="py-1 "><a href="#" style="color: red !important;"><i class="bi bi-box-arrow-right ms-2 me-3">
+                        </i> Log out</a></li>
+            </ul>
+        </aside>
+
+
+        <button class="option-btn btn btn-sm shadow" id="sidebar-toggle"><i class="bi bi-list"></i></button>
+        <div class="" id="content-wrapper">
+            <div class="row w-100 pt-3 ps-5">
+                <div class="col-md-4 my-1">Organizations Listing</div>
+                <div class="col-md-4 my-1">
+                    <input type="text" class="form-control rounded-pill" id="sarch"
+                        placeholder="Search Organizations here">
+                </div>
+                <div class="col-md-3 my-1 ms-5 me-5">
+                    Organization/Documents
+                </div>
+            </div>
+        </div>
+        <div class=" card shadow-lg mt-3 mx-4" style="height: fit-content; min-height: 76vh;">
+            <div class="row w-100 my-3 px-5">
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label for="file_upload" class="form-label">Files (3) Folders (5)</label>
+                        <div class="pill-radio">
+                            <input type="radio" id="files" name="options">
+                            <label for="files">Files</label>
+                            <input type="radio" id="Folders" name="options">
+                            <label for="Folders">Folders</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label for="add_org" class="form-label">Type</label>
+                        <select class="form-select rounded-pill" aria-label="Default select example">
+                            <option selected>All type</option>
+                            <option value="1">Pdf</option>
+                            <option value="2">Word</option>
+                            <option value="3">Text</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label for="dateInput" class="form-label">Select Month</label>
+                        <input type="month" class="form-control rounded-pill" id="dateInput">
+                    </div>
+
+                </div>
+                <div class="col"></div>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label for="dateInput" class="form-label">View Type</label> <br>
+                        <div class="pill-radio">
+                            <input type="radio" id="list-view" name="viewType" checked>
+                            <label for="list-view"><i class="bi bi-list-ul"></i></label>
+                            <input type="radio" id="grid-view" name="viewType" >
+                            <label for="grid-view"><i class="bi bi-grid"></i></label>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Your table goes here -->
+            <div class="table-responsive w-100 list-view">
+
+
+                <table class="w-100">
+
+
+                    <tr class="table-head">
+                        <th class="p-2">Name </th>
+                        <th class="p-2">Size</th>
+                        <th class="p-2">Type</th>
+                        <th class="p-2">Modified</th>
+                        <th class="p-2">Action</th>
+                    </tr>
+
+                    <tbody id="table-body">
+                        <!-- Add your table rows here -->
+                        <tr class="border-bottom ">
+                            <td class="p-2">
+                                <div class="form-check d-flex "
+                                    style="align-items: center; max-width: max-content !important;">
+                                    <input class="form-check-input " type="checkbox" value="" id="checkbox-file">
+                                    <label for="checkbox-file" class="ms-4"><img src="./img/folder.png" class="mx-2"
+                                            alt="" srcset=""> Annual Reports</label>
+                                </div>
+
+                            </td>
+                            <td class="p-2">625 MB</td>
+                            <td class="p-2 ">Folder</td>
+                            <td class="p-2">27/11/2023</td>
+                            <td class="p-2"><i class="bi bi-pencil-square me-3"></i> <i
+                                    class="bi bi-trash3 text-danger"></i></td>
+                        </tr>
+                        <tr class="border-bottom ">
+                            <td class="p-2">
+                                <div class="form-check d-flex "
+                                    style="align-items: center; max-width: max-content !important;">
+                                    <input class="form-check-input " type="checkbox" value="" id="checkbox-file">
+                                    <label for="checkbox-file" class="ms-4"><img src="./img/folder.png" class="mx-2"
+                                            alt="" srcset=""> Registration Certificates</label>
+                                </div>
+
+                            </td>
+                            <td class="p-2">995 MB</td>
+                            <td class="p-2 ">Folder</td>
+                            <td class="p-2">27/11/2023</td>
+                            <td class="p-2"><i class="bi bi-pencil-square me-3"></i> <i
+                                    class="bi bi-trash3 text-danger"></i></td>
+                        </tr>
+                        <tr class="border-bottom ">
+                            <td class="p-2">
+                                <div class="form-check d-flex "
+                                    style="align-items: center; max-width: max-content !important;">
+                                    <input class="form-check-input " type="checkbox" value="" id="checkbox-file">
+                                    <label for="checkbox-file" class="ms-4"><img src="./img/excel.png" class="mx-2"
+                                            alt="" srcset=""> Other Documents</label>
+                                </div>
+
+                            </td>
+                            <td class="p-2">625 KB</td>
+                            <td class="p-2 ">.xls</td>
+                            <td class="p-2">27/11/2023</td>
+                            <td class="p-2"><i class="bi bi-pencil-square me-3"></i> <i
+                                    class="bi bi-trash3 text-danger"></i></td>
+                        </tr>
+                        <tr class="border-bottom ">
+                            <td class="p-2">
+                                <div class="form-check d-flex "
+                                    style="align-items: center; max-width: max-content !important;">
+                                    <input class="form-check-input " type="checkbox" value="" id="checkbox-file">
+                                    <label for="checkbox-file" class="ms-4"><img src="./img/word.png" class="mx-2"
+                                            alt="" srcset=""> Other Documents</label>
+                                </div>
+
+                            </td>
+                            <td class="p-2">625 MB</td>
+                            <td class="p-2 ">.doc</td>
+                            <td class="p-2">27/11/2023</td>
+                            <td class="p-2"><i class="bi bi-pencil-square me-3"></i> <i
+                                    class="bi bi-trash3 text-danger"></i></td>
+                        </tr>
+                        <tr class="border-bottom ">
+                            <td class="p-2">
+                                <div class="form-check d-flex "
+                                    style="align-items: center; max-width: max-content !important;">
+                                    <input class="form-check-input " type="checkbox" value="" id="checkbox-file">
+                                    <label for="checkbox-file" class="ms-4"><img src="./img/pdf.png" class="mx-2" alt=""
+                                            srcset=""> Other Documents</label>
+                                </div>
+
+                            </td>
+                            <td class="p-2">625 MB</td>
+                            <td class="p-2 ">.pdf</td>
+                            <td class="p-2">27/11/2023</td>
+                            <td class="p-2"><i class="bi bi-pencil-square me-3"></i> <i
+                                    class="bi bi-trash3 text-danger"></i></td>
+                        </tr>
+
+
+
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive grid-view" style="display: none;">
+                <div class="d-flex p-3 flex-wrap">
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+
+                        <img src="./img/folder.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+
+                        <img src="./img/word.png" alt="Folder">
+                        <h6 class="mt-3 ">word 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+                        <img src="./img/folder.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+                        <img src="./img/excel.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+                        <img src="./img/folder.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+                        <img src="./img/pdf.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+                        <img src="./img/folder.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+                    <div class="border-1 card shadow m-4 px-5 py-4">
+                        <button type="button" class="btn btn-sm" style="position: absolute; right: 5%; top: 5%;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Edit </a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3 text-danger"></i> Delete</a>
+                            </li>
+
+                        </ul>
+                        <img src="./img/folder.png" alt="Folder">
+                        <h6 class="mt-3 ">Folder 1</h6>
+                    </div>
+
+                </div>
+            </div>
+            <nav aria-label="Page navigation " class="ms-auto me-5 mt-4">
+                <ul class="pagination" id="pagination">
+                    <li class="page-item" id="prev-page">
+                        <a class="page-link" href="#" aria-label="">
+
+                        </a>
+                    </li>
+                    <!-- Pagination links will be dynamically added here -->
+                    <li class="page-item" id="next-page">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    </div>
+    <!-- list grid view js -->
+    <script>
+        window.addEventListener("load", function () {
+            var viewTypeRadio = document.getElementsByName("viewType");
+            var listContainer = document.querySelector(".list-view");
+            var gridContainer = document.querySelector(".grid-view");
+
+            function toggleViewType() {
+                if (viewTypeRadio[0].checked) {
+                    listContainer.style.display = "block";
+                    gridContainer.style.display = "none";
+                } else {
+                    listContainer.style.display = "none";
+                    gridContainer.style.display = "grid";
+                }
+            }
+
+            // Initial toggle based on default checked radio
+            toggleViewType();
+
+            // Add change event listener to radio buttons
+            viewTypeRadio.forEach(function (radio) {
+                radio.addEventListener("change", toggleViewType);
+            });
+        });
+    </script>
+
+
+    <!-- pagination script -->
+    <script>
+        window.addEventListener("load", function () {
+            var tableBody = document.getElementById("table-body");
+            var pagination = document.getElementById("pagination");
+            var rows = tableBody.getElementsByTagName("tr");
+            var rowsPerPage = 8;
+            var currentPage = 1;
+
+            function showPage(page) {
+                var start = (page - 1) * rowsPerPage;
+                var end = start + rowsPerPage;
+
+                for (var i = 0; i < rows.length; i++) {
+                    if (i >= start && i < end) {
+                        rows[i].classList.remove("hidden");
+                    } else {
+                        rows[i].classList.add("hidden");
+                    }
+                }
+            }
+
+            function generatePagination() {
+                var pageCount = Math.ceil(rows.length / rowsPerPage);
+
+                // Clear existing pagination links
+                pagination.innerHTML = "";
+
+                // Previous Button
+                var prevButton = document.createElement("li");
+                prevButton.classList.add("page-item");
+                prevButton.id = "prev-page";
+                var prevLink = document.createElement("a");
+                prevLink.classList.add("page-link");
+                prevLink.href = "#";
+                prevLink.textContent = "<";
+                prevLink.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    if (currentPage > 1) {
+                        currentPage--;
+                        showPage(currentPage);
+                    }
+                });
+                prevButton.appendChild(prevLink);
+                pagination.appendChild(prevButton);
+
+                // Pagination links
+                for (var i = 1; i <= pageCount; i++) {
+                    var li = document.createElement("li");
+                    li.classList.add("page-item");
+                    var a = document.createElement("a");
+                    a.classList.add("page-link");
+                    a.href = "#";
+                    a.textContent = i;
+
+                    a.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        currentPage = parseInt(event.target.textContent);
+                        showPage(currentPage);
+                    });
+
+                    li.appendChild(a);
+                    pagination.appendChild(li);
+                }
+
+                // Next Button
+                var nextButton = document.createElement("li");
+                nextButton.classList.add("page-item");
+                nextButton.id = "next-page";
+                var nextLink = document.createElement("a");
+                nextLink.classList.add("page-link");
+                nextLink.href = "#";
+                nextLink.textContent = ">";
+                nextLink.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    if (currentPage < pageCount) {
+                        currentPage++;
+                        showPage(currentPage);
+                    }
+                });
+                nextButton.appendChild(nextLink);
+                pagination.appendChild(nextButton);
+            }
+            showPage(currentPage);
+            generatePagination();
+        });
+    </script>
+    <script>
+        const $button = document.querySelector('#sidebar-toggle');
+        const $wrapper = document.querySelector('#wrapper');
+
+        $button.addEventListener('click', (e) => {
+            e.preventDefault();
+            $wrapper.classList.toggle('toggled');
+        });
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+
+        </script>
+</body>
+
+</html>

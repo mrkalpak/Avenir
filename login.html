@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <section>
+    <nav class="navbar navbar-expand-lg bg-trasperant navbar-light " data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./">
+          <img src="./img/Logo.png" alt="" srcset="" height="110px">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item mx-3">
+              <a class="nav-link active" aria-current="page" href="./">Home</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link active" href="./">About Us</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link active" href="./">Services</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link active" href="./">Blog</a>
+            </li>
+            <li class="nav-item   mx-4">
+
+              <button type="button" class="btn px-3 py-2 rounded-pill contact btn-outline-light  text-white">Contact
+                Us</button>
+            </li>
+
+            <li class="nav-item ms-3 me-5">
+              <a class="nav-link active me-5" href="./">Login/ Sign up</a>
+            </li>
+
+
+          </ul>
+
+        </div>
+      </div>
+    </nav> 
+  </section>
+
+  <!-- login card -->
+  <section class="">
+
+    <div class="bg-light rounded login-card  mx-auto me-auto mt-5">
+      <div class="row">
+        <div class="col">
+          <div class="mt-5 mx-5">
+
+            <h2>Welcome!</h2> <br>
+            <b>Access restricted to the staff & clients.</b> <br> <br>
+            If you don’t have login credentials, <br> please contact the administration.
+          </div>
+
+
+        </div>
+        <div class="col my-4">
+          <div class="mt-auto mb-auto mx-4 h-100 text-white px-5 rounded" style="background-color:  #092940; height: 100%;">
+            <div class="py-3">
+              <i class="bi bi-key"></i> Login to Enter
+              <hr class="text-white mt-1">
+            </div>
+            <form action="">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" required placeholder="Enter your first and last name">
+              </div>
+              <div class="mb-3">
+                <label for="pass" class="form-label">Password</label>
+                <div class="input-group">
+                  <input type="password" name="password" required placeholder="Password must be 8 letters" class="form-control"
+                    name="password" id="password">
+                  <button class="btn btn-outline-eye toggle-password " type="button">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <button type="submit" class="btn mt-3 fs-6 w-100 rounded-pill btn-login btn-lg">Login</button>
+            </form>
+            <a class="mb-3 mt-2 ms-2 text-white" href="" style="font-size: smaller;">
+              Forget Passsword ?
+          </a>
+          <div class="justify-content-between  mt-3 mb-4 d-flex" style="font-size: smaller;">
+            <div class="">Doesn’t have an account?</div>
+            <a class="text-white" href="">Sign up!</a>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const togglePasswordButton = document.querySelector('.toggle-password');
+
+    togglePasswordButton.addEventListener('click', function () {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        togglePasswordButton.querySelector('i').classList.remove('bi-eye');
+        togglePasswordButton.querySelector('i').classList.add('bi-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        togglePasswordButton.querySelector('i').classList.remove('bi-eye-slash');
+        togglePasswordButton.querySelector('i').classList.add('bi-eye');
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
